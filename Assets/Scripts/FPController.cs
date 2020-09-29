@@ -7,8 +7,8 @@ public class FPController : MonoBehaviour
     public GameObject cam;
 
     float speed = 0.1f;
-    float Xsensitivity = 2;
-    float Ysensitivity = 2;
+    float Xsensitivity = 4;
+    float Ysensitivity = 4;
     float MinimumX = -90;
     float MaximumX = 90;
     float x;
@@ -18,10 +18,6 @@ public class FPController : MonoBehaviour
     CapsuleCollider capsule;
     Quaternion cameraRot;
     Quaternion characterRot;
-
-    bool cursorIsLocked = true;
-    bool lockCursor = true;
-
 
 
     void Start()
@@ -37,7 +33,7 @@ public class FPController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-            rb.AddForce(0, 300, 0);
+            rb.AddForce(0, 900, 0);
         }
     }
 
@@ -57,9 +53,7 @@ public class FPController : MonoBehaviour
         x = Input.GetAxis("Horizontal") * speed;
         z = Input.GetAxis("Vertical") * speed;
 
-        transform.position += cam.transform.forward * z + cam.transform.right * x; //new Vector3(x * speed, 0, z * speed);
-
-        //UpdateCursorLock();
+        transform.position += cam.transform.forward * z + cam.transform.right * x;
     }
 
     Quaternion ClampRotationAroundXAxis(Quaternion q)
@@ -86,42 +80,5 @@ public class FPController : MonoBehaviour
         }
         return false;
     }
-
-
-
-    //public void SetCursorLock(bool value)
-    //{
-    //    lockCursor = value;
-    //    if (!lockCursor)
-    //    {
-    //        Cursor.lockState = CursorLockMode.None;
-    //        Cursor.visible = true;
-    //    }
-    //}
-
-    //public void UpdateCursorLock()
-    //{
-    //    if (lockCursor)
-    //        InternalLockUpdate();
-    //}
-
-    //public void InternalLockUpdate()
-    //{
-    //    if (Input.GetKeyUp(KeyCode.Escape))
-    //        cursorIsLocked = false;
-    //    else if (Input.GetMouseButtonUp(0))
-    //        cursorIsLocked = true;
-
-    //    if (cursorIsLocked)
-    //    {
-    //        Cursor.lockState = CursorLockMode.Locked;
-    //        Cursor.visible = false;
-    //    }
-    //    else if (!cursorIsLocked)
-    //    {
-    //        Cursor.lockState = CursorLockMode.None;
-    //        Cursor.visible = true;
-    //    }
-    //}
 
 }
