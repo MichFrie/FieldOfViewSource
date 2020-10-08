@@ -7,8 +7,8 @@ public class FPController : MonoBehaviour
     public GameObject cam;
 
     float speed = 0.1f;
-    float Xsensitivity = 6;
-    float Ysensitivity = 6;
+    float Xsensitivity = 10;
+    float Ysensitivity = 10;
     float MinimumX = -90;
     float MaximumX = 90;
     float x;

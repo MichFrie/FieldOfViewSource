@@ -8,11 +8,13 @@ public class AssetCreation : MonoBehaviour
 {
     public Transform[] cubes;
     public Transform prefab;
+    public float xRotation;
     
     int gameObjectLength = 4;
     int i = 0;
     
     float speed = 0.5f;
+    float xRot, yRot, zRot;
 
     public GameObject cubesParent;
     
@@ -26,8 +28,21 @@ public class AssetCreation : MonoBehaviour
     }
     private void Update()
     {
-        
-        transform.position += new Vector3(1, 0, 0) * speed * Time.deltaTime; 
+        GameObjectMovement();
+    }
+
+    private void GameObjectMovement()
+    {
+        transform.position += new Vector3(1, 0, 0) * speed * Time.deltaTime;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.transform.CompareTag("Sphere"))
+        {
+            xRot += 90;
+            transform.eulerAngles = new Vector3(xRot, 0, 0);
+            other.gameObject.SetActive(false);
+        }
     }
 
     private void ChooseRandomElement()
