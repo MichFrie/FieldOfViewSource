@@ -6,11 +6,12 @@ using UnityEngine;
 
 public class AssetCreation : MonoBehaviour
 {
-    public Transform prefab;
-    int gameObjectLength = 4;
     public Transform[] cubes;
+    public Transform prefab;
+    
+    int gameObjectLength = 4;
     int i = 0;
-    int randomNumber = 0;
+    
     float speed = 0.5f;
 
     public GameObject cubesParent;
@@ -21,40 +22,36 @@ public class AssetCreation : MonoBehaviour
     }
     private void Start()
     {
-       
+       InvokeRepeating("ChooseRandomElement", 0f, 2f);
     }
     private void Update()
     {
-        StartCoroutine("ChooseRandomElement");
+        
         transform.position += new Vector3(1, 0, 0) * speed * Time.deltaTime; 
     }
 
-    private IEnumerator ChooseRandomElement()
+    private void ChooseRandomElement()
     {
-        cubes = new Transform[4];
-        while (true)
+        var randomNumber = UnityEngine.Random.Range(0,0);
+        switch (randomNumber)
         {
-            randomNumber = UnityEngine.Random.Range(0, 6);
-            switch (randomNumber)
-            {
-                case 0: J(); break;
-                case 1: I(); break;
-                case 2: L(); break;
-                case 3: O(); break;
-                case 4: S(); break;
-                case 5: T(); break;
-                case 6: Z(); break;
-                default: Debug.Log("Choice not possible"); break;
-            }
-            yield return null;
+            case 0: J(); break;
+            case 1: I(); break;
+            case 2: L(); break;
+            case 3: O(); break;
+            case 4: S(); break;
+            case 5: T(); break;
+            case 6: Z(); break;
+            default: Debug.Log("invalid case"); break;
         }
+        Debug.Log(randomNumber);
     }
     private void J()
     {
         while (i < gameObjectLength)
         {
             Transform prefabPosition = Instantiate(prefab, cubesParent.transform);
-            cubes[i] = prefab;
+            //cubes[i] = prefab;
             if (i == 0)
             {
                 prefabPosition.localPosition = Vector3.right * i;
@@ -77,7 +74,7 @@ public class AssetCreation : MonoBehaviour
         while (i < gameObjectLength)
         {
             Transform prefabPosition = Instantiate(prefab, cubesParent.transform);
-            cubes[i] = prefab;
+            //cubes[i] = prefab;
             prefabPosition.localPosition = (Vector3.right * i);
             prefabPosition.localScale = Vector3.one / 1.05f;
             i++;
@@ -90,7 +87,7 @@ public class AssetCreation : MonoBehaviour
         {
             Transform prefabPosition = Instantiate(prefab, cubesParent.transform);
 
-            cubes[i] = prefab;
+            //cubes[i] = prefab;
             prefabPosition.localPosition = (Vector3.right * i);
             if (i == 3)
             {
@@ -105,7 +102,7 @@ public class AssetCreation : MonoBehaviour
         while (i < 4)
         {
             Transform prefabPosition = Instantiate(prefab, cubesParent.transform);
-            cubes[i] = prefab;
+            //cubes[i] = prefab;
             if (i == 0)
             {
                 prefabPosition.localPosition = Vector3.right * i;
@@ -132,7 +129,7 @@ public class AssetCreation : MonoBehaviour
         while (i < gameObjectLength)
         {
             Transform prefabPosition = Instantiate(prefab, cubesParent.transform);
-            cubes[i] = prefab;
+            //cubes[i] = prefab;
             prefabPosition.localPosition = Vector3.right * i;
             if (i == 2)
             {
@@ -153,7 +150,7 @@ public class AssetCreation : MonoBehaviour
         while (i < gameObjectLength)
         {
             Transform prefabPosition = Instantiate(prefab, cubesParent.transform);
-            cubes[i] = prefab;
+            //cubes[i] = prefab;
             prefabPosition.localPosition = Vector3.right * i;
             if (i == 3)
             {
@@ -169,7 +166,7 @@ public class AssetCreation : MonoBehaviour
         while (i < gameObjectLength)
         {
             Transform prefabPosition = Instantiate(prefab, cubesParent.transform);
-            cubes[i] = prefab;
+            //cubes[i] = prefab;
             if (i == 0)
             {
                 prefabPosition.localPosition = Vector3.forward * (i + 1);
