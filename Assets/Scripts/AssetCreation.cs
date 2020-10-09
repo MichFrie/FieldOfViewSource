@@ -12,29 +12,28 @@ public class AssetCreation : MonoBehaviour
     
     int gameObjectLength = 4;
     int i = 0;
-    
-    float speed = 0.5f;
+   
     float xRot, yRot, zRot;
 
     public GameObject cubesParent;
+
     
     private void Awake()
     {
-         cubesParent = GameObject.FindWithTag("Respawn");
+       
+    
     }
     private void Start()
     {
-       InvokeRepeating("ChooseRandomElement", 0f, 2f);
+       InvokeRepeating("ChooseRandomElement", 0f, 3f);
     }
     private void Update()
     {
-        GameObjectMovement();
+        
+       
     }
 
-    private void GameObjectMovement()
-    {
-        transform.position += new Vector3(1, 0, 0) * speed * Time.deltaTime;
-    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.transform.CompareTag("Sphere"))
@@ -47,9 +46,13 @@ public class AssetCreation : MonoBehaviour
 
     private void ChooseRandomElement()
     {
-        var randomNumber = UnityEngine.Random.Range(0,0);
+        cubesParent = new GameObject();
+        cubesParent.AddComponent<MovementScript>();
+        var randomNumber = UnityEngine.Random.Range(0,5);
+        Debug.Log("randomNumber: " + randomNumber);
         switch (randomNumber)
         {
+            
             case 0: J(); break;
             case 1: I(); break;
             case 2: L(); break;
@@ -58,8 +61,7 @@ public class AssetCreation : MonoBehaviour
             case 5: T(); break;
             case 6: Z(); break;
             default: Debug.Log("invalid case"); break;
-        }
-        Debug.Log(randomNumber);
+        }      
     }
     private void J()
     {
@@ -82,7 +84,7 @@ public class AssetCreation : MonoBehaviour
             prefabPosition.localScale = Vector3.one / 1.05f;
             i++;
         }
-
+        i = 0;
     }
     private void I()
     {
@@ -94,6 +96,7 @@ public class AssetCreation : MonoBehaviour
             prefabPosition.localScale = Vector3.one / 1.05f;
             i++;
         }
+        i = 0;
     }
 
     private void L()
@@ -111,6 +114,7 @@ public class AssetCreation : MonoBehaviour
             prefabPosition.localScale = Vector3.one / 1.05f;
             i++;
         }
+        i = 0;
     }
     private void O()
     {
@@ -137,6 +141,7 @@ public class AssetCreation : MonoBehaviour
             prefabPosition.localScale = Vector3.one / 1.05f;
             i++;
         }
+        i = 0;
 
     }
     void S()
@@ -157,6 +162,7 @@ public class AssetCreation : MonoBehaviour
             prefabPosition.localScale = Vector3.one / 1.05f;
             i++;
         }
+        i = 0;
 
     }
 
@@ -174,6 +180,7 @@ public class AssetCreation : MonoBehaviour
             prefabPosition.localScale = Vector3.one / 1.05f;
             i++;
         }
+        i = 0;
 
     }
     private void Z()
@@ -201,5 +208,6 @@ public class AssetCreation : MonoBehaviour
             prefabPosition.localScale = Vector3.one / 1.05f;
             i++;
         }
+        i = 0;
     }
 }
