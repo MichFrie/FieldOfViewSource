@@ -13,11 +13,8 @@ public class AssetCreation : MonoBehaviour
     int gameObjectLength = 4;
     int i = 0;
    
-    float xRot, yRot, zRot;
-
     public GameObject cubesParent;
-
-    
+       
     private void Awake()
     {
        
@@ -25,6 +22,7 @@ public class AssetCreation : MonoBehaviour
     }
     private void Start()
     {
+       
        InvokeRepeating("ChooseRandomElement", 0f, 3f);
     }
     private void Update()
@@ -33,22 +31,11 @@ public class AssetCreation : MonoBehaviour
        
     }
 
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.transform.CompareTag("Sphere"))
-        {
-            xRot += 90;
-            transform.eulerAngles = new Vector3(xRot, 0, 0);
-            other.gameObject.SetActive(false);
-        }
-    }
-
     private void ChooseRandomElement()
     {
         cubesParent = new GameObject();
         cubesParent.AddComponent<MovementScript>();
-        var randomNumber = UnityEngine.Random.Range(0,5);
+        var randomNumber = UnityEngine.Random.Range(0,0);
         Debug.Log("randomNumber: " + randomNumber);
         switch (randomNumber)
         {
@@ -85,6 +72,7 @@ public class AssetCreation : MonoBehaviour
             i++;
         }
         i = 0;
+        cubesParent.AddComponent<BoxCollider>();
     }
     private void I()
     {
