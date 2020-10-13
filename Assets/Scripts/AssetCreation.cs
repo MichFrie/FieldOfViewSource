@@ -9,39 +9,33 @@ public class AssetCreation : MonoBehaviour
     public Transform[] cubes;
     public Transform prefab;
     public float xRotation;
+    public Material[] materials;
     
     int gameObjectLength = 4;
     int i = 0;
    
     public GameObject cubesParent;
-       
+
     private void Awake()
     {
-       
-    
+        
     }
     private void Start()
-    {
-       
+    {     
        InvokeRepeating("ChooseRandomElement", 0f, 3f);
-    }
-    private void Update()
-    {
         
-       
     }
 
     private void ChooseRandomElement()
     {
         cubesParent = new GameObject();
         cubesParent.AddComponent<MovementScript>();
-        var randomNumber = UnityEngine.Random.Range(0,0);
-        Debug.Log("randomNumber: " + randomNumber);
+        var randomNumber = UnityEngine.Random.Range(0, 2);
         switch (randomNumber)
         {
             
-            case 0: J(); break;
-            case 1: I(); break;
+            case 0: I(); break;
+            case 1: J(); break;
             case 2: L(); break;
             case 3: O(); break;
             case 4: S(); break;
@@ -50,12 +44,27 @@ public class AssetCreation : MonoBehaviour
             default: Debug.Log("invalid case"); break;
         }      
     }
+
+    private void I()
+    {
+        while (i < gameObjectLength)
+        {
+            Transform prefabPosition = Instantiate(prefab, cubesParent.transform);
+            cubesParent.transform.position = new Vector3(0, 0, UnityEngine.Random.Range(-10, 10));
+            prefabPosition.localPosition = (Vector3.right * i);
+            prefabPosition.localScale = Vector3.one / 1.05f;
+            prefab.GetComponent<Renderer>().material = materials[0];
+            i++;
+        }
+        i = 0;
+    }
     private void J()
     {
         while (i < gameObjectLength)
         {
             Transform prefabPosition = Instantiate(prefab, cubesParent.transform);
-            //cubes[i] = prefab;
+            cubesParent.transform.position = new Vector3(0, 0, UnityEngine.Random.Range(-10,10));
+            prefab.GetComponent<Renderer>().material = materials[1];
             if (i == 0)
             {
                 prefabPosition.localPosition = Vector3.right * i;
@@ -73,18 +82,6 @@ public class AssetCreation : MonoBehaviour
         }
         i = 0;
         cubesParent.AddComponent<BoxCollider>();
-    }
-    private void I()
-    {
-        while (i < gameObjectLength)
-        {
-            Transform prefabPosition = Instantiate(prefab, cubesParent.transform);
-            //cubes[i] = prefab;
-            prefabPosition.localPosition = (Vector3.right * i);
-            prefabPosition.localScale = Vector3.one / 1.05f;
-            i++;
-        }
-        i = 0;
     }
 
     private void L()
